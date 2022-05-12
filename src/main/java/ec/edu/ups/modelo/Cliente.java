@@ -61,4 +61,14 @@ public class Cliente {
 	public void setCredito(double credito) {
 		this.credito = credito;
 	}
+
+        public List<Compra> getCompras() {
+            return compras;
+        }
+
+        public void setCompras(List<Compra> compras) {
+            this.compras = compras;
+        }
+        
+        
 }

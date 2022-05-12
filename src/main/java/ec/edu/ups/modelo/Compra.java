@@ -9,5 +9,21 @@ public class Compra {
 		this.libro = libro;
 		this.cliente = cliente;
 	}
-	
+
+        public Libro getLibro() {
+            return libro;
+        }
+
+        public void setLibro(Libro libro) {
+            this.libro = libro;
+        }
+
+        public Cliente getCliente() {
+            return cliente;
+        }
+
+        public void setCliente(Cliente cliente) {
+            this.cliente = cliente;
+        }
+        
 }
