@@ -94,6 +94,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCompras = new javax.swing.JTable();
         btnComprar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtSaldo = new javax.swing.JLabel();
+        txtSaldoNuevo = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        btnRecargar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -186,11 +191,37 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Tu saldo:");
+
+        txtSaldo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSaldo.setText("0");
+
+        txtSaldoNuevo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSaldoNuevo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSaldoNuevo.setText("0");
+        txtSaldoNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSaldoNuevoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Recargar tu saldo");
+
+        btnRecargar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRecargar.setText("Recargar");
+        btnRecargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecargarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
@@ -202,7 +233,10 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnComprar)))))
+                                .addComponent(btnComprar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -215,11 +249,22 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(169, 169, 169))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(81, 81, 81))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSaldo)
+                        .addGap(198, 198, 198))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSaldoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnRecargar)))
+                        .addGap(164, 164, 164))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(134, 134, 134))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,18 +276,29 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLogin)
                         .addGap(8, 8, 8)
                         .addComponent(btnComprar)
                         .addGap(2, 2, 2)
-                        .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtSaldo))
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSaldoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRecargar)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -254,14 +310,28 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
         String numCed = txtCedula.getText();
+        
+        tblCompras.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{"Título", "Precio"}
+        ));        
+        
         for(int i=0; i < clientes.size(); i++){
             if(clientes.get(i).getCedula().equals(numCed)){
                 cliente = clientes.get(i);    
                 txtBienvenido.setText("Bievenido "+cliente.getNombre());
+                txtSaldo.setText(String.valueOf(cliente.getCredito()));
             }
         }
+        
+        DefaultTableModel modelos = (DefaultTableModel) tblCompras.getModel();
+        for(int i=0; i < cliente.getCompras().size(); i++){     
+            Libro libro = cliente.getCompras().get(i).getLibro();
+            String[] libro1 = {libro.getTitulo(), String.valueOf(Math.round(libro.calcularPrecioFinal()*100.0)/100.0)};
+            modelos.addRow(libro1);
+        }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
@@ -273,8 +343,21 @@ public class Principal extends javax.swing.JFrame {
         DefaultTableModel modelos = (DefaultTableModel) tblCompras.getModel();
         String[] libro1 = {libro.getTitulo(), String.valueOf(Math.round(libro.calcularPrecioFinal()*100.0)/100.0)};
         modelos.addRow(libro1);
+        txtSaldo.setText(String.valueOf(cliente.getCredito()));
     }//GEN-LAST:event_btnComprarActionPerformed
 
+    private void txtSaldoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaldoNuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSaldoNuevoActionPerformed
+
+    private void btnRecargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecargarActionPerformed
+        // TODO add your handling code here:
+        double saldo;
+        saldo = Double.parseDouble(txtSaldoNuevo.getText());
+        cliente.recargarCredito(saldo);
+        txtSaldo.setText(String.valueOf(cliente.getCredito()));
+    }//GEN-LAST:event_btnRecargarActionPerformed
+   
     /**
      * @param args the command line arguments
      */
@@ -315,9 +398,12 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRecargar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -326,5 +412,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable tblLibros;
     private javax.swing.JLabel txtBienvenido;
     private javax.swing.JTextField txtCedula;
+    private javax.swing.JLabel txtSaldo;
+    private javax.swing.JTextField txtSaldoNuevo;
     // End of variables declaration//GEN-END:variables
 }
