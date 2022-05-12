@@ -5,6 +5,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Compra;
 import ec.edu.ups.modelo.Libro;
 import ec.edu.ups.modelo.LibroDigital;
 import ec.edu.ups.modelo.LibroImpreso;
@@ -19,6 +20,7 @@ import javax.swing.table.TableModel;
  */
 public class Principal extends javax.swing.JFrame {
     List<Cliente> clientes;
+    List<Libro> libros;
     Cliente cliente;
     
     /**
@@ -46,6 +48,14 @@ public class Principal extends javax.swing.JFrame {
         this.clientes.add(cli1);
         this.clientes.add(cli2);
         this.clientes.add(cli3);
+        
+        this.libros = new ArrayList<Libro>();
+        this.libros.add(libro1);
+        this.libros.add(libro2);
+        this.libros.add(libro3);
+        this.libros.add(libro4);
+        this.libros.add(libro5);
+        this.libros.add(libro6);
                 
         //Insertar loss libros en la tabla
         String[] lib1 = {libro1.getTitulo(), libro1.getAutor(), String.valueOf(libro1.getEdicion()), String.valueOf(libro1.calcularPrecioFinal())};
@@ -82,7 +92,8 @@ public class Principal extends javax.swing.JFrame {
         txtBienvenido = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblLibros1 = new javax.swing.JTable();
+        tblCompras = new javax.swing.JTable();
+        btnComprar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,8 +130,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         tblLibros.setColumnSelectionAllowed(true);
+        tblLibros.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblLibros);
-        tblLibros.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblLibros.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (tblLibros.getColumnModel().getColumnCount() > 0) {
+            tblLibros.getColumnModel().getColumn(1).setHeaderValue("Autor");
+            tblLibros.getColumnModel().getColumn(2).setHeaderValue("Edición");
+        }
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Iniciar Sesión");
@@ -144,24 +160,31 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Listado de tus compras");
 
-        tblLibros1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Título", "Autor", "Edición", "Precio", "Precio Final"
+                "Título", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tblLibros1);
-        tblLibros1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(tblCompras);
+        tblCompras.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        btnComprar.setText("Comprar");
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,8 +199,11 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnComprar)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -208,7 +234,9 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLogin)
-                        .addGap(32, 32, 32)
+                        .addGap(8, 8, 8)
+                        .addComponent(btnComprar)
+                        .addGap(2, 2, 2)
                         .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -235,6 +263,17 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        // TODO add your handling code here:
+        int fila = tblLibros.getSelectedRow();
+        Libro libro = libros.get(fila);
+        Compra compra = new Compra(libro, cliente);
+        cliente.comprarLibro(libro);
+        DefaultTableModel modelos = (DefaultTableModel) tblCompras.getModel();
+        String[] libro1 = {libro.getTitulo(), String.valueOf(Math.round(libro.calcularPrecioFinal()*100.0)/100.0)};
+        modelos.addRow(libro1);
+    }//GEN-LAST:event_btnComprarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +313,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -282,8 +322,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblCompras;
     private javax.swing.JTable tblLibros;
-    private javax.swing.JTable tblLibros1;
     private javax.swing.JLabel txtBienvenido;
     private javax.swing.JTextField txtCedula;
     // End of variables declaration//GEN-END:variables
